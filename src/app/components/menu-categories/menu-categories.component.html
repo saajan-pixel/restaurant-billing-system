@@ -1,0 +1,62 @@
+<div class="mt-4 border p-3">
+    <mat-tab-group mat-stretch-tabs="false" mat-align-tabs="start">
+        <mat-tab label="All Items">
+            <div class="row h-801 mt-3">
+                <div class="col-4 mb-5 menu-item" *ngFor="let item of pagedMenuItems">
+                    <div class="image mb-2">
+                        <img class="menu-img" src="{{item.img}}" alt="">
+                    </div>
+
+                    <div>{{item.name}}</div>
+                    <div class="price my-2">Rs {{item.price}}</div>
+                    <button mat-raised-button color="accent" (click)="addToMenu(item)">Add to Menu</button>
+                </div>
+                <app-pagination (pagedMenuItemsEmitter)="onPagedMenuItemsReceived($event,'all')" *ngIf="allMenuItems"
+                    [itemsPerPage]="itemsPerPage" [lists]="allMenuItems"></app-pagination>
+            </div>
+        </mat-tab>
+        <mat-tab label="Main Courses">
+            <div class="row h-801 mt-3">
+                <div class="col-4 mb-5 menu-item" *ngFor="let item of pagedMainCoursesItems">
+                    <div class="image mb-2">
+                        <img class="menu-img" src="{{item.img}}" alt="">
+                    </div>
+
+                    <div class="price my-2">Rs {{item.price}}</div>
+                    <button mat-raised-button color="accent" (click)="addToMenu(item)">Add to Menu</button>
+                </div>
+                <app-pagination (pagedMenuItemsEmitter)="onPagedMenuItemsReceived($event,'main courses')"
+                    *ngIf="mainCoursesItems" [itemsPerPage]="itemsPerPage" [lists]="mainCoursesItems"></app-pagination>
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Appetizer">
+            <div class="row h-801 mt-3">
+                <div class="col-4 mb-5 menu-item" *ngFor="let item of pagedAppeitizerItems">
+                    <div class="image mb-2">
+                        <img class="menu-img" src="{{item.img}}" alt="">
+                    </div>
+                    <div class="price my-2">Rs {{item.price}}</div>
+                    <button mat-raised-button color="accent" (click)="addToMenu(item)">Add to Menu</button>
+                </div>
+                <app-pagination (pagedMenuItemsEmitter)="onPagedMenuItemsReceived($event,'appeitizer')"
+                    *ngIf="appeitizerItems" [itemsPerPage]="itemsPerPage" [lists]="appeitizerItems"></app-pagination>
+            </div>
+        </mat-tab>
+
+        <mat-tab label="Beverages">
+            <div class="row h-801 mt-3">
+                <div class="col-4 mb-5 menu-item" *ngFor="let item of pagedBeverageItems">
+                    <div class="image mb-2">
+                        <img class="menu-img" src="{{item.img}}" alt="">
+                    </div>
+
+                    <div class="price my-2">Rs {{item.price}}</div>
+                    <button mat-raised-button color="accent" (click)="addToMenu(item)">Add to Menu</button>
+                </div>
+                <app-pagination (pagedMenuItemsEmitter)="onPagedMenuItemsReceived($event,'beverages')"
+                    *ngIf="beverageItems" [itemsPerPage]="itemsPerPage" [lists]="beverageItems"></app-pagination>
+            </div>
+        </mat-tab>
+    </mat-tab-group>
+</div>

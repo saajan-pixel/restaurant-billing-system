@@ -1,0 +1,20 @@
+
+
+.menu-item{
+    padding: 10px;
+    &:hover{
+        box-shadow: rgba(136, 165, 191, 0.48) 6px 2px 16px 0px, rgba(255, 255, 255, 0.8) -6px -2px 16px 0px;
+    }
+
+    .menu-img{
+        width: 100%;
+        max-height: 250px;
+    }
+}
+.h-801{
+    height: 801px;
+}
+
+::ng-deep .mat-mdc-tab-body-content {
+    padding: 0 25px;
+}

@@ -1,0 +1,76 @@
+<div class="mt-4 border p-3">
+  <div class="header fs-5 fw-medium">Menu Items</div>
+
+  <div class="body mt-4">
+    <div class="row pb-2">
+      <div class="col-5 fw-medium fs-6">Item</div>
+      <div class="col-2 fw-medium fs-6">Qty</div>
+      <div class="col-3 fw-medium fs-6">Price</div>
+      <div class="col-2 fw-medium fs-6">Sub Total</div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="row mt-2" *ngIf="menuItems?.length > 0">
+      <ng-container *ngFor="let item of menuItems;index as i">
+        <form [formGroup]="form">
+          <div formArrayName="arr">
+            <div class="col-5 mt-3">{{item.name}}</div>
+            <div class="col-2 mt-3" *ngFor="let itemGroup of arr.controls; let i = index" [formGroupName]="i"> <input
+                type="number" formControlName="qty" class="form-control w-100" (input)="calculateSubtotal(item,i)"
+                min="1">
+            </div>
+            <div class="col-2 mt-3">{{item.price}}</div>
+            <div class="col-3 mt-3">
+
+              <div *ngFor="let itemGroup of arr.controls; let i = index" [formGroupName]="i">
+                <input type="text" class="text-right w-100 border-0 outline-none" [readOnly]="true"
+                  formControlName="subTotal">
+              </div>
+
+            </div>
+
+          </div>
+        </form>
+      </ng-container>
+
+      <div class="row my-3">
+        <div class="col-5 fw-medium fs-6">Total Qty</div>
+        <div class="col-2 fw-medium fs-6"></div>
+        <div class="col-3 fw-medium fs-6"></div>
+        <div class="col-2 d-flex justify-content-end fw-medium fs-6">{{menuItems?.length}}</div>
+      </div>
+
+      <div class="row my-3">
+        <div class="col-5 fw-medium fs-6">Total</div>
+        <div class="col-2 fw-medium fs-6"></div>
+        <div class="col-3 fw-medium fs-6"></div>
+        <div class="col-2 d-flex justify-content-end fw-medium fs-6">Rs {{total.toLocaleString()}}</div>
+      </div>
+
+      <div class="row my-3">
+        <div class="col-5 fw-medium fs-6">Discount</div>
+        <div class="col-2 fw-medium fs-6"></div>
+        <div class="col-3 fw-medium fs-6"></div>
+        <div class="col-2 d-flex justify-content-end fw-medium fs-6">{{menuItems?.length}}</div>
+      </div>
+
+      <div class="row my-3">
+        <div class="col-5 fw-medium fs-6">Net Price</div>
+        <div class="col-2 fw-medium fs-6"></div>
+        <div class="col-3 fw-medium fs-6"></div>
+        <div class="col-2 d-flex justify-content-end fw-medium fs-6">{{menuItems?.length}}</div>
+      </div>
+
+
+
+      <!-- 
+      <app-pagination (pagedMenuItemsEmitter)="onPagedMenuItemsReceived($event)" *ngIf="menuItems"
+        [itemsPerPage]="itemsPerPage" [lists]="menuItems"></app-pagination> -->
+    </div>
+
+    <div class="text-center mt-2" *ngIf="menuItems?.length === 0">No item available</div>
+
+  </div>
+
+
+
+</div>
